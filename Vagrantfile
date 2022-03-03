@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "generic/ubuntu2004" 
+  config.vm.box = "generic/ubuntu2004"
   config.vm.provider :libvirt do |domain|
     domain.memory = 2048
     domain.cpus = 2
@@ -18,4 +18,7 @@ Vagrant.configure("2") do |config|
     worker2.vm.network 'private_network', ip: "192.168.1.12"
   end
 
+  config.vm.provision "docker" do |d|
+    d.pull_images "busybox"
+  end  
 end
